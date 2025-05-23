@@ -14,18 +14,34 @@ const WheelContainer = styled.div`
   position: relative;
   overflow: hidden;
   padding-bottom: 100px;
+  
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
+    pointer-events: none;
+  }
 `;
 
 const PageHeader = styled.div`
   color: white;
   text-align: center;
   margin-bottom: var(--spacing-xl);
+  position: relative;
+  z-index: 2;
 `;
 
 const PageTitle = styled.h1`
   font-size: 2rem;
   margin-bottom: var(--spacing-xs);
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(to bottom, #ffffff 0%, rgba(255, 255, 255, 0.8) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 `;
 
 const WheelWrapper = styled.div`
@@ -33,6 +49,7 @@ const WheelWrapper = styled.div`
   width: 300px;
   height: 300px;
   margin: 0 auto;
+  filter: drop-shadow(0 5px 20px rgba(0, 0, 0, 0.3));
 `;
 
 const WheelBackground = styled.div`
@@ -41,9 +58,22 @@ const WheelBackground = styled.div`
   height: 320px;
   top: -10px;
   left: -10px;
-  background: white;
+  background: linear-gradient(to bottom, white, #f5f5f5);
   border-radius: 50%;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.2),
+              inset 0 0 5px rgba(0, 0, 0, 0.1);
+  
+  &::after {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 2px dashed rgba(142, 29, 65, 0.2);
+    border-radius: 50%;
+    pointer-events: none;
+  }
 `;
 
 const Wheel = styled(motion.div)`
@@ -54,6 +84,8 @@ const Wheel = styled(motion.div)`
   overflow: hidden;
   background: white;
   transform-origin: center;
+  border: 5px solid white;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
 `;
 
 const WheelSection = styled.div`
@@ -63,7 +95,7 @@ const WheelSection = styled.div`
   transform-origin: bottom right;
   left: 0;
   top: 0;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -72,45 +104,99 @@ const WheelSection = styled.div`
   transform: ${props => `rotate(${props.rotation}deg) skew(${props.skew}deg)`};
   background: ${props => props.color};
   color: white;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
   overflow: hidden;
+  
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+      circle at bottom right,
+      rgba(255, 255, 255, 0.4) 0%,
+      rgba(255, 255, 255, 0) 70%
+    );
+    pointer-events: none;
+  }
 
   span {
     position: absolute;
     transform: ${props => `rotate(${props.textRotation}deg) translate(70px) rotate(${props.textRotation2}deg)`};
     width: 60px;
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     text-align: center;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
   }
 `;
 
 const Pointer = styled.div`
   position: absolute;
-  top: -20px;
+  top: -22px;
   left: calc(50% - 20px);
   width: 40px;
   height: 40px;
-  background: var(--color-primary);
+  background: linear-gradient(to bottom, var(--color-primary-light), var(--color-primary));
   clip-path: polygon(50% 100%, 0 0, 100% 0);
   z-index: 10;
-  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.3));
+  filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.3));
+  
+  &::after {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 6px;
+    right: 6px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.3);
+    clip-path: polygon(50% 100%, 0 0, 100% 0);
+  }
 `;
 
 const SpinButton = styled(motion.button)`
-  padding: var(--spacing-md) var(--spacing-xl);
-  background: white;
+  padding: var(--spacing-md) var(--spacing-xxl);
+  background: linear-gradient(to bottom, white, #f8f8f8);
   color: var(--color-primary);
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.2rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
   border: none;
-  border-radius: var(--border-radius-lg);
+  border-radius: var(--border-radius-full);
   margin-top: var(--spacing-xl);
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: var(--border-radius-full) var(--border-radius-full) 0 0;
+  }
+  
+  &:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  }
+  
+  &:active:not(:disabled) {
+    transform: translateY(-1px);
+  }
   
   &:disabled {
-    opacity: 0.5;
+    opacity: 0.7;
     cursor: not-allowed;
+    background: #e0e0e0;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
   }
 `;
 
@@ -118,29 +204,93 @@ const StreakInfo = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: var(--border-radius-lg);
-  padding: var(--spacing-sm) var(--spacing-lg);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: var(--glass-blur);
+  border: var(--glass-border);
+  border-radius: var(--border-radius-xl);
+  padding: var(--spacing-md) var(--spacing-xl);
   color: white;
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+  
+  &::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      rgba(255, 255, 255, 0.1),
+      transparent
+    );
+    transform: rotate(30deg);
+    pointer-events: none;
+  }
 `;
 
 const StreakDays = styled.div`
   display: flex;
-  gap: 6px;
+  gap: 8px;
 `;
 
 const StreakDay = styled.div`
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-  background: ${props => props.active ? 'white' : 'rgba(255, 255, 255, 0.3)'};
+  background: ${props => props.active ? 'white' : 'rgba(255, 255, 255, 0.15)'};
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.7rem;
-  color: ${props => props.active ? 'var(--color-primary)' : 'rgba(255, 255, 255, 0.6)'};
+  font-size: 0.8rem;
+  color: ${props => props.active ? 'var(--color-primary)' : 'rgba(255, 255, 255, 0.7)'};
   font-weight: bold;
+  position: relative;
+  border: ${props => props.active ? 'none' : '1px solid rgba(255, 255, 255, 0.3)'};
+  box-shadow: ${props => props.active ? '0 2px 8px rgba(0, 0, 0, 0.2)' : 'none'};
+  transition: all 0.3s ease;
+  
+  &::before {
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    border-radius: 50%;
+    background: ${props => props.active ? 'linear-gradient(45deg, var(--color-primary-light), var(--color-primary))' : 'transparent'};
+    opacity: 0.3;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+  }
+  
+  ${props => props.active && `
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 50%;
+      border: 2px solid white;
+      animation: pulse 2s infinite;
+      opacity: 0;
+    }
+    
+    @keyframes pulse {
+      0% {
+        transform: scale(0.8);
+        opacity: 0.8;
+      }
+      100% {
+        transform: scale(1.5);
+        opacity: 0;
+      }
+    }
+  `}
 `;
 
 const ResultModal = styled(motion.div)`

@@ -320,7 +320,13 @@ const CityGrid = styled.div`
   position: relative;
   overflow: hidden;
   padding: var(--spacing-xl);
+  padding-bottom: 100px; /* Additional space for the footer */
   z-index: 1;
+  
+  /* Make sure the grid is centered within the container */
+  margin: 0 auto;
+  max-width: 1000px;
+  width: 100%;
   
   &::before {
     content: "";
@@ -524,22 +530,62 @@ const EventIndicator = styled(motion.div)`
   }
 `;
 
+const Footer = styled.div`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background: var(--glass-background);
+  backdrop-filter: var(--glass-blur);
+  border-top: var(--glass-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  z-index: 90;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+`;
+
+const FooterButton = styled.button`
+  background: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: ${props => props.active ? 'var(--color-primary)' : 'var(--color-text-light)'};
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: var(--spacing-xs);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    color: var(--color-primary);
+  }
+`;
+
+const FooterIcon = styled.div`
+  font-size: 1.5rem;
+  margin-bottom: 2px;
+`;
+
 const DailyWheelButton = styled(motion.button)`
   position: fixed;
-  bottom: 90px;
+  bottom: 60px;
   right: 25px;
-  width: 70px;
-  height: 70px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
   background: linear-gradient(135deg, #ad3559 0%, #8e1d41 100%);
   color: white;
-  font-size: 1.8rem;
-  border: 4px solid white;
+  font-size: 1.7rem;
+  border: 3px solid white;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 0 0 0 4px rgba(142, 29, 65, 0.2);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 0 0 0 3px rgba(142, 29, 65, 0.2);
   z-index: 100;
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   overflow: hidden;
@@ -562,20 +608,20 @@ const DailyWheelButton = styled(motion.button)`
   &::after {
     content: "1";
     position: absolute;
-    top: -8px;
-    right: -8px;
+    top: -5px;
+    right: -5px;
     background: linear-gradient(135deg, #ff5252 0%, #f44336 100%);
     color: white;
     border-radius: 50%;
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1rem;
+    font-size: 0.85rem;
     font-weight: bold;
-    border: 3px solid white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 2px solid white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     z-index: 2;
     animation: pulse 2s infinite;
   }
@@ -595,8 +641,8 @@ const DailyWheelButton = styled(motion.button)`
   }
   
   &:hover {
-    transform: scale(1.1) translateY(-5px) rotate(5deg);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35), 0 0 0 4px rgba(142, 29, 65, 0.3);
+    transform: scale(1.1) translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35), 0 0 0 3px rgba(142, 29, 65, 0.3);
     
     &::before {
       animation: spinReflection 1s forwards;
@@ -765,6 +811,25 @@ const CityView = ({ userData, updateUserData }) => {
       >
         <span>🎡</span>
       </DailyWheelButton>
+      
+      <Footer>
+        <FooterButton active={true}>
+          <FooterIcon>🏠</FooterIcon>
+          Город
+        </FooterButton>
+        <FooterButton>
+          <FooterIcon>📚</FooterIcon>
+          Сюжеты
+        </FooterButton>
+        <FooterButton>
+          <FooterIcon>🏆</FooterIcon>
+          Лидеры
+        </FooterButton>
+        <FooterButton>
+          <FooterIcon>👤</FooterIcon>
+          Профиль
+        </FooterButton>
+      </Footer>
     </CityViewContainer>
   );
 };
