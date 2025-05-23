@@ -1,0 +1,34 @@
+<svg width="1000" height="800" viewBox="0 0 1000 800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#a7d8ff" />
+      <stop offset="100%" stop-color="#eaf6ff" />
+    </linearGradient>
+    <linearGradient id="buildingGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#333" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#000" stop-opacity="0.9" />
+    </linearGradient>
+  </defs>
+
+  <!-- Sky background -->
+  <rect width="100%" height="100%" fill="url(#skyGradient)" />
+  
+  <!-- Distant mountains -->
+  <path d="M0,500 Q250,400 500,500 T1000,500 V800 H0 Z" fill="#b3d1e8" opacity="0.5" />
+  
+  <!-- City skyline silhouette -->
+  <path d="M0,650 L20,650 L20,600 L40,600 L40,580 L60,580 L60,620 L80,620 L80,590 L100,590 L100,550 L120,550 L120,580 L140,580 L140,600 L160,600 L160,550 L180,550 L180,530 L200,530 L200,570 L220,570 L220,550 L240,550 L240,620 L280,620 L280,570 L300,570 L300,550 L320,550 L320,520 L340,520 L340,570 L360,570 L360,590 L380,590 L380,630 L400,630 L400,600 L420,600 L420,580 L440,580 L440,550 L460,550 L460,590 L480,590 L480,520 L500,520 L500,500 L520,500 L520,530 L540,530 L540,560 L560,560 L560,600 L580,600 L580,630 L600,630 L600,580 L620,580 L620,550 L640,550 L640,530 L660,530 L660,550 L680,550 L680,570 L700,570 L700,620 L720,620 L720,580 L740,580 L740,550 L760,550 L760,530 L780,530 L780,550 L800,550 L800,570 L820,570 L820,620 L840,620 L840,590 L860,590 L860,570 L880,570 L880,620 L900,620 L900,590 L920,590 L920,540 L940,540 L940,600 L960,600 L960,650 L1000,650 L1000,800 L0,800 Z" fill="url(#buildingGradient)" />
+
+  <!-- Clouds -->
+  <ellipse cx="200" cy="200" rx="100" ry="40" fill="white" opacity="0.6" />
+  <ellipse cx="250" cy="180" rx="80" ry="30" fill="white" opacity="0.7" />
+  <ellipse cx="300" cy="190" rx="70" ry="25" fill="white" opacity="0.5" />
+  
+  <ellipse cx="700" cy="150" rx="120" ry="50" fill="white" opacity="0.5" />
+  <ellipse cx="750" cy="130" rx="90" ry="35" fill="white" opacity="0.6" />
+  <ellipse cx="800" cy="140" rx="80" ry="30" fill="white" opacity="0.7" />
+
+  <!-- Sun -->
+  <circle cx="800" cy="100" r="60" fill="#ffeb99" opacity="0.8" />
+  <circle cx="800" cy="100" r="40" fill="#fff5cc" opacity="0.9" />
+</svg>
